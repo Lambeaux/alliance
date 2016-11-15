@@ -13,6 +13,7 @@
  */
 package org.codice.alliance.catalog.plugin.rejection;
 
+import static org.apache.commons.lang3.BooleanUtils.or;
 import static org.codice.alliance.catalog.core.api.types.Security.CLASSIFICATION;
 import static org.codice.alliance.catalog.core.api.types.Security.CLASSIFICATION_SYSTEM;
 import static org.codice.alliance.catalog.core.api.types.Security.CODEWORDS;
@@ -23,7 +24,6 @@ import static org.codice.alliance.catalog.core.api.types.Security.RELEASABILITY;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.BooleanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -171,12 +171,13 @@ public class UnmarkedMetacardRejectionPlugin implements AccessPlugin {
             LOGGER.debug("Codewords: {}", codewords);
             LOGGER.debug("Dissemination-Controls: {}", disseminationControls);
 
-            if (BooleanUtils.or(
+            // ** Without the explicit array we fail compilation due to ambiguous method **
+            if (or(new Boolean[] {
                     classificationSystemRequired && isAttributeCompletelyNull(classificationSystem),
                     releasabilityRequired && isAttributeCompletelyNull(releasability),
                     codewordsRequired && isAttributeCompletelyNull(codewords),
                     disseminationControlsRequired
-                            && isAttributeCompletelyNull(disseminationControls))) {
+                            && isAttributeCompletelyNull(disseminationControls)})) {
                 throw new StopProcessingException(REJECT_UNMARKED_ERROR_MESSAGE);
             }
 

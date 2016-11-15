@@ -51,7 +51,10 @@
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-                        <Embed-Dependency/>
+                        <Import-Package>*</Import-Package>
+                        <Embed-Dependency>
+                            commons-lang3
+                        </Embed-Dependency>
                     </instructions>
                 </configuration>
             </plugin>

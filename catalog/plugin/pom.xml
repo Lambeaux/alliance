@@ -25,7 +25,6 @@
     <name>Alliance :: Catalog :: Plugin</name>
 
     <modules>
-        <module>catalog-plugin-defaultsecurityattributevalues</module>
         <module>catalog-plugin-rejectunmarked</module>
     </modules>
 
