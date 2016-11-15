@@ -40,7 +40,7 @@
         </dependency>
         <dependency>
             <groupId>org.codice.alliance.catalog.plugin</groupId>
-            <artifactId>catalog-plugin-defaultsecurityattributevalues</artifactId>
+            <artifactId>catalog-plugin-rejectunmarked</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

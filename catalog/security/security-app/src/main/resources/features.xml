@@ -26,10 +26,10 @@
         <bundle>mvn:org.codice.alliance.security/banner-marking/${project.version}</bundle>
     </feature>
 
-    <feature name="security-defaultsecurityattributevalues" install="auto" version="${project.version}"
-             description="Plugin to mark unmarked metacards with the system high security markings.">
+    <feature name="security-rejectunmarked" install="auto" version="${project.version}"
+             description="On ingest, any products that reach this plugin and still have no security markings will be rejected.">
         <feature prerequisite="true">alliance-catalog-core-api</feature>
-        <bundle>mvn:org.codice.alliance.catalog.plugin/catalog-plugin-defaultsecurityattributevalues/${project.version}</bundle>
+        <bundle>mvn:org.codice.alliance.catalog.plugin/catalog-plugin-rejectunmarked/${project.version}</bundle>
     </feature>
 
     <feature name="security-app" install="auto" version="${project.version}"
