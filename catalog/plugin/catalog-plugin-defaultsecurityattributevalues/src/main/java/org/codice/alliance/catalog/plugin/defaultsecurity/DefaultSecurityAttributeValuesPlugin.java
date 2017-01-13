@@ -107,6 +107,15 @@ public class DefaultSecurityAttributeValuesPlugin implements PreIngestPlugin {
         return securityMarkings;
     }
 
+    private boolean metacardDoesNotNeedDefaults(Metacard metacard) {
+        Attribute gmdmAttrib = metacard.getAttribute("GiveMeDefaultMarkings");
+        if (gmdmAttrib == null) {
+            return true;
+        }
+        Boolean gmdmAsBool = (Boolean) gmdmAttrib.getValue();
+        return !gmdmAsBool;
+    }
+
     /**
      * Adds default system high-water markings in the event that none of the policies were able to apply security markings to this metacard.
      *
@@ -118,7 +127,9 @@ public class DefaultSecurityAttributeValuesPlugin implements PreIngestPlugin {
         Map policyMap = (Map) metacard.getAttribute(Metacard.SECURITY)
                 .getValue();
         if (policyMap != null && !policyMap.isEmpty()) {
-            return metacard;
+            if (metacardDoesNotNeedDefaults(metacard)) {
+                return metacard;
+            }
         }
 
         final Metacard extendedMetacard;
